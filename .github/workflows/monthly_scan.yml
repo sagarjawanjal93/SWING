@@ -26,9 +26,8 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip install yfinance pandas "ta>=0.10.0" rich fastapi uvicorn httpx lxml html5lib beautifulsoup4 requests
       
-      - name: Install swing package from src
+      - name: Install swing package
         run: |
-          cd src
           pip install -e .
       
       - name: Run monthly screener
@@ -36,7 +35,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          cd src/swing
           python -m swing.main_monthly -m nifty_500 --telegram
+
 
 
