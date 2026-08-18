@@ -29,13 +29,17 @@ jobs:
       - name: Install swing package
         run: |
           pip install -e .
+          python -c "import sys; print(sys.path)"
+          pip list | grep -i swing
       
       - name: Run monthly screener
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
+          cd src/swing
           python -m swing.main_monthly -m nifty_500 --telegram
+
 
 
 
